@@ -12,7 +12,7 @@ use Illuminate\Filesystem\Filesystem;
 class EvaluatorTestMethods extends TestCase
 {
     public $requests;
-    
+
     public function __construct()
     {
         $this->requests = [
