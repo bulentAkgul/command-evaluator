@@ -1,0 +1,27 @@
+{
+  "name": "bakgul/command-evaluator",
+  "description": "Create Laravel files easily.",
+  "authors": [
+    {
+      "name": "Bulent Akgul",
+      "email": "bulent.akgul@me.com"
+    }
+  ],
+  "require": {},
+  "require-dev": {
+    "bakgul/kernel": "@dev"
+  },
+  "autoload": {
+    "psr-4": {
+      "Bakgul\\Evaluator\\": "src/",
+      "Bakgul\\Evaluator\\Tests\\": "tests/"
+    }
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Bakgul\\Evaluator\\EvaluatorServiceProvider"
+      ]
+    }
+  }
+}
