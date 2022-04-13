@@ -5,6 +5,7 @@ namespace Bakgul\Evaluator\Tests\Feature\CommandPartEvaluationTests;
 use Bakgul\Kernel\Tests\Concerns\HasTestMethods;
 use Bakgul\Evaluator\Services\PartEvaluationServices\RunsInUnsuitableStandalone;
 use Bakgul\Evaluator\Tests\EvaluatorTestMethods;
+use Bakgul\Kernel\Tests\Tasks\SetupTest;
 
 class InUnsuitableStandaloneTest extends EvaluatorTestMethods
 {
@@ -22,15 +23,15 @@ class InUnsuitableStandaloneTest extends EvaluatorTestMethods
     /** @test */
     public function evaluator_will_return_null_when_create_package_command_runs_in_packagified_laravel()
     {
-        $this->standalone([false, false]);
-
+        $this->testPackage = (new SetupTest)([false, false]);
+        
         $this->assertNull($this->evaluator::handle($this->setRequest(key: 'package')));
     }
 
     /** @test */
     public function evaluator_will_return_null_when_create_package_command_runs_in_standalone_package_first_time()
     {
-        $this->standalone([true, false]);
+        $this->testPackage = (new SetupTest)([true, false]);
 
         $this->emptyBase();
 
@@ -40,7 +41,7 @@ class InUnsuitableStandaloneTest extends EvaluatorTestMethods
     /** @test */
     public function evaluator_will_return_error_when_create_package_command_runs_in_standalone_package_second_time()
     {
-        $this->standalone([true, false]);
+        $this->testPackage = (new SetupTest)([true, false]);
 
         $this->makeFakePackage();
 
@@ -57,8 +58,8 @@ class InUnsuitableStandaloneTest extends EvaluatorTestMethods
     /** @test */
     public function evaluator_will_return_error_when_create_package_command_runs_in_standalone_laravel()
     {
-        $this->standalone([false, true]);
-
+        $this->testPackage = (new SetupTest)([false, true]);
+        
         $response = $this->evaluator::handle($this->setRequest(key: 'package'));
 
         $this->assertNotNull($response);

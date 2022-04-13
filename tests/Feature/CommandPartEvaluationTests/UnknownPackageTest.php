@@ -5,6 +5,7 @@ namespace Bakgul\Evaluator\Tests\Feature\CommandPartEvaluationTests;
 use Bakgul\Kernel\Tests\Concerns\HasTestMethods;
 use Bakgul\Evaluator\Services\PartEvaluationServices\HasUnknownPackage;
 use Bakgul\Evaluator\Tests\EvaluatorTestMethods;
+use Bakgul\Kernel\Tests\Tasks\SetupTest;
 
 class UnknownPackageTest extends EvaluatorTestMethods
 {
@@ -25,7 +26,7 @@ class UnknownPackageTest extends EvaluatorTestMethods
         config()->set('packagify.apps.admin.folder', 'xxx');
 
         foreach ([[true, false], [false, true], [true, true]] as $isAlone) {
-            $this->standalone($isAlone);
+            $this->testPackage = (new SetupTest)($isAlone);
 
             foreach (['file', 'relation'] as $command) {
                 foreach ([null, $this->testPackage['name'], 'admin', 'xxx', 'unknown_name'] as $package) {
@@ -38,6 +39,8 @@ class UnknownPackageTest extends EvaluatorTestMethods
     /** @test */
     public function evaluator_will_return_null_when_create_file_command_has_a_valid_package()
     {
+        $this->testPackage = (new SetupTest)([false, false]);
+
         $this->assertNull($this->evaluator::handle($this->setRequest(), []));
     }
 
@@ -67,6 +70,8 @@ class UnknownPackageTest extends EvaluatorTestMethods
     /** @test */
     public function evaluator_will_return_null_when_relation_creator_command_has_valid_packages()
     {
+        $this->testPackage = (new SetupTest)([false, false]);
+
         $this->assertNull($this->evaluator::handle($this->setRequest([
             'from' => 'testing/user',
             'to' => 'testing/post',

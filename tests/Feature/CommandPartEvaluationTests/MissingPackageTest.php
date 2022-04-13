@@ -5,6 +5,7 @@ namespace Bakgul\Evaluator\Tests\Feature\CommandPartEvaluationTests;
 use Bakgul\Kernel\Tests\Concerns\HasTestMethods;
 use Bakgul\Evaluator\Services\PartEvaluationServices\HasMissingPackage;
 use Bakgul\Evaluator\Tests\EvaluatorTestMethods;
+use Bakgul\Kernel\Tests\Tasks\SetupTest;
 
 class MissingPackageTest extends EvaluatorTestMethods
 {
@@ -25,7 +26,7 @@ class MissingPackageTest extends EvaluatorTestMethods
         config()->set('packagify.apps.admin.folder', 'xxx');
 
         foreach ([[true, false], [false, true], [true, true]] as $isAlone) {
-            $this->standalone($isAlone);
+            $this->testPackage = (new SetupTest)($isAlone);
             
             foreach (['file', 'relation'] as $command) {
                 foreach ([null, $this->testPackage['name'], 'admin', 'xxx', 'unknown_name'] as $package) {
@@ -38,7 +39,7 @@ class MissingPackageTest extends EvaluatorTestMethods
     /** @test */
     public function evaluator_will_return_null_when_create_file_command_has_a_valid_package()
     {
-        $this->standalone([false, false]);
+        $this->testPackage = (new SetupTest)([false, false]);
 
         $this->assertNull($this->evaluator::handle($this->setRequest(), []));
     }
@@ -46,7 +47,7 @@ class MissingPackageTest extends EvaluatorTestMethods
     /** @test */
     public function evaluator_will_return_confimation_object_when_create_file_command_has_no_package()
     {
-        $this->standalone([false, false]);
+        $this->testPackage = (new SetupTest)([false, false]);
 
         $response = $this->evaluator::handle($this->setRequest(['package' => null]), []);
 

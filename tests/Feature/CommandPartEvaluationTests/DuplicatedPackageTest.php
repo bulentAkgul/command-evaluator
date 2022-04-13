@@ -5,6 +5,8 @@ namespace Bakgul\Evaluator\Tests\Feature\CommandPartEvaluationTests;
 use Bakgul\Kernel\Tests\Concerns\HasTestMethods;
 use Bakgul\Evaluator\Services\PartEvaluationServices\HasDuplicatedPackage;
 use Bakgul\Evaluator\Tests\EvaluatorTestMethods;
+use Bakgul\Kernel\Helpers\Folder;
+use Bakgul\Kernel\Tests\Tasks\SetupTest;
 
 class DuplicatedPackageTest extends EvaluatorTestMethods
 {
@@ -30,6 +32,8 @@ class DuplicatedPackageTest extends EvaluatorTestMethods
     /** @test */
     public function evaluator_will_return_error_object_when_the_command_has_a_package_that_already_exists()
     {
+        $this->testPackage = (new SetupTest)([false, false]);
+        
         $response = $this->evaluator::handle($this->setRequest(key: 'package'));
 
         $this->assertNotNull($response);

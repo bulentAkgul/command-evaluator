@@ -5,6 +5,7 @@ namespace Bakgul\Evaluator\Tests\Feature\CommandPartEvaluationTests;
 use Bakgul\Kernel\Tests\Concerns\HasTestMethods;
 use Bakgul\Evaluator\Services\PartEvaluationServices\HasUnknownRoot;
 use Bakgul\Evaluator\Tests\EvaluatorTestMethods;
+use Bakgul\Kernel\Tests\Tasks\SetupTest;
 
 class UnknownRootTest extends EvaluatorTestMethods
 {
@@ -22,6 +23,8 @@ class UnknownRootTest extends EvaluatorTestMethods
     /** @test */
     public function evaluator_will_return_null_when_create_package_command_has_a_valid_root()
     {
+        $this->testPackage = (new SetupTest)([false, false]);
+
         $this->assertNull($this->evaluator::handle($this->setRequest(key: 'package')));
     }
 

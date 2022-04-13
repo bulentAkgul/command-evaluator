@@ -8,6 +8,7 @@ use Bakgul\Kernel\Helpers\Settings;
 use Bakgul\Kernel\Tests\Tasks\SetupTest;
 use Bakgul\Evaluator\Services\PartEvaluationServices\HasUnknownModel;
 use Bakgul\Evaluator\Tests\EvaluatorTestMethods;
+use Bakgul\Kernel\Helpers\Folder;
 
 class UnknownModelTest extends EvaluatorTestMethods
 {
@@ -111,21 +112,16 @@ class UnknownModelTest extends EvaluatorTestMethods
     /** @test */
     public function evaluator_will_return_null_when_create_relation_command_has_valid_models_in_standalone_app_by_ignoring_packages()
     {
-        $this->testPackage = (new SetupTest)([true, false]);
-        
-        $this->createModels([['src', 'User'], ['src', 'Post']]);
-
-        $this->assertNull($this->evaluator::handle($this->setRequest([
-            'from' => 'pack1/user',
-            'to' => 'pack2/post'
-        ], 'relation')));
-
-        $this->testPackage = (new SetupTest)([false, true]);
-
-        $this->assertNull($this->evaluator::handle($this->setRequest([
-            'from' => 'pack1/user',
-            'to' => 'pack2/post'
-        ], 'relation')));
+        foreach ([[true, false], [false, true]] as $isAlone) {
+            $this->testPackage = (new SetupTest)($isAlone);
+            
+            $this->createModels([['src', 'User'], ['src', 'Post']]);
+            
+            $this->assertNull($this->evaluator::handle($this->setRequest([
+                'from' => 'pack1/user',
+                'to' => 'pack2/post'
+            ], 'relation')));
+        }
     }
 
     /** @test */
