@@ -15,7 +15,7 @@ return [
             'file' => "The command has no package name." . PHP_EOL . " The files will be created in '/app'" . PHP_EOL . " Proceed? (y / n / package name)",
         ],
         'unknown' => [
-            'file' => "A package named '{{ package }}' couldn't be found." . PHP_EOL . " The files will be created in the related namespace of the main repository" . PHP_EOL . " Proceed? (y / n / package name)",
+            'file' => "A package named '{{ package }}' couldn't be found." . PHP_EOL . " The files will be created in the related namespace of the main repository." . PHP_EOL . " Proceed? (y / n / package name)",
             'relation' => "The command has been terminated because one of the given packages couldn't be found."
         ],
     ],
