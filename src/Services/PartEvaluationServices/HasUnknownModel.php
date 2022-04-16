@@ -8,7 +8,6 @@ use Bakgul\Kernel\Helpers\Text;
 use Bakgul\Kernel\Tasks\CollectFiles;
 use Bakgul\Evaluator\Evaluator;
 use Bakgul\Evaluator\Tasks\SetDefaultMessage;
-use Bakgul\Evaluator\Tasks\SetUnmodifiedMessage;
 use Bakgul\Kernel\Helpers\Convention;
 
 class HasUnknownModel extends Evaluator
