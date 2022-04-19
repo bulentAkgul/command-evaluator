@@ -42,7 +42,10 @@ class HasUnknownTask extends Evaluator
     private static function isolateTasks(array $request): array
     {
         return array_filter(self::produce(
-            self::produce(explode('+', $request['name']), fn ($x) => explode(',', $x)),
+            self::produce(
+                Isolation::chunk($request['name']),
+                fn ($x) => explode(',', $x)
+            ),
             fn ($x) => Isolation::tasks($x)
         ));
     }
@@ -51,7 +54,7 @@ class HasUnknownTask extends Evaluator
     {
         return self::produce(
             self::getTypes($request['type']),
-            fn ($x) => self::setTasks($request['name'], $x)
+            fn ($x) => Settings::files("{$x}.tasks")
         );
     }
 
@@ -62,25 +65,9 @@ class HasUnknownTask extends Evaluator
             Arr::flatten(CollectTypes::_($type), 1)
         ));
     }
-    
-    private static function setTasks(string $name, string $type)
-    {
-        return array_filter(array_merge(
-            str_contains($name, Settings::seperators('modifier') . 'all') ? ['all'] : [],
-            Settings::files("{$type}.tasks")
-        ));
-    }
-
-    private static function isolate(string $method, string $value): array
-    {
-        return self::produce(
-            explode(Settings::seperators('part'), $value),
-            fn ($x) => str_contains($x, 'all') ? [] : Isolation::$method($x)
-        );
-    }
 
     private static function produce(array $array, callable $callback)
     {
-        return Arry::unique(Arr::flatten(array_map($callback, $array)));
+        return Arry::unique(array_filter(Arr::flatten(array_map($callback, $array))));
     }
 }
