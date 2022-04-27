@@ -6,7 +6,7 @@ use Bakgul\Kernel\Helpers\Path;
 use Bakgul\Kernel\Helpers\Text;
 use Bakgul\Kernel\Tests\Services\TestDataService;
 use Bakgul\Kernel\Tests\TestCase;
-use Bakgul\FileContent\Tasks\CompleteFolders;
+use Bakgul\Kernel\Tasks\CompleteFolders;
 use Illuminate\Filesystem\Filesystem;
 
 class EvaluatorTestMethods extends TestCase
