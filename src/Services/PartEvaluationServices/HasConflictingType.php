@@ -2,14 +2,9 @@
 
 namespace Bakgul\Evaluator\Services\PartEvaluationServices;
 
-use Bakgul\Kernel\Helpers\Arry;
-use Bakgul\Kernel\Helpers\Isolation;
 use Bakgul\Kernel\Helpers\Settings;
-use Bakgul\Kernel\Tasks\CollectTypes;
 use Bakgul\Evaluator\Evaluator;
 use Bakgul\Evaluator\Tasks\GetMessage;
-use Bakgul\Evaluator\Tasks\SetUnmodifiedMessage;
-use Illuminate\Support\Arr;
 
 class HasConflictingType extends Evaluator
 {
@@ -52,9 +47,8 @@ class HasConflictingType extends Evaluator
 
     private static function setRequest(array $request)
     {
-        return [
-            ...$request,
-            'count' => $request['relation'] == 'oto' ? 'One' : 'Many',
-        ];
+        $request['count'] = $request['relation'] == 'oto' ? 'One' : 'Many';
+
+        return $request;
     }
 }
