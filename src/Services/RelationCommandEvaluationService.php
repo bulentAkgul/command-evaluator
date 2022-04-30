@@ -39,7 +39,7 @@ class RelationCommandEvaluationService extends Evaluator
     {
         $packages = [];
 
-        foreach (['from', 'to', 'pivot'] as $key) {
+        foreach (['from', 'to', 'mediator'] as $key) {
             $package = Isolation::package($request[$key]);
             $packages[] = $package != $request[$key] ? $package : '';
         }
