@@ -53,15 +53,15 @@ class ConflictingTypeTest extends EvaluatorTestMethods
     {
         Settings::set('evaluator.disable_warnings_unless_a_new_value_can_be_provided', false);
 
-        $relation = 'oto';
-        
-        $response = $this->evaluator::handle($this->setRequest([
-            'relation' => $relation,
-            'mediator' => 'some_name',
-            'polymorphic' => true
-        ], 'relation'), []);
+        foreach (['oto', 'otm'] as $relation) {
+            $response = $this->evaluator::handle($this->setRequest([
+                'relation' => $relation,
+                'mediator' => 'some_name',
+                'polymorphic' => true
+            ], 'relation'), []);
 
-        $this->assertConfirmationObject($response, $relation);
+            $this->assertConfirmationObject($response, $relation);
+        }
     }
 
     private function assertConfirmationObject(array $response, string $relation)
