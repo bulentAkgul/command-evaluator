@@ -21,10 +21,11 @@ return [
     ],
     'parent' => [
         'missing' => PHP_EOL . "To create a '{{ variation }}', a parent is required." . PHP_EOL . " Provide a {{ file }} name, which will be created unless it exists," . PHP_EOL . " or 'n' to terminate the command.",
-        'conflicting' => PHP_EOL . "It contains more than one variation that requires a parent." . PHP_EOL . "Please create them ({{ variation }}) seperately."
+        'conflicting' => PHP_EOL . "It contains more than one variation that requires a parent." . PHP_EOL . " Please create them ({{ variation }}) seperately."
     ],
     'type' => [
-        'duplicated' => PHP_EOL . "Each file type in a single command must be unique." . PHP_EOL . " Please create them seperately."
+        'duplicated' => PHP_EOL . "Each file type in a single command must be unique." . PHP_EOL . " Please create them seperately.",
+        'conflicting' => PHP_EOL . "There is no such thing as 'Polymorphic Has {{ count }} Through' relationship." . PHP_EOL . " 'One to {{ count }} Polymorphic' will be generated. Proceed? (y / n)",
     ],
     'extra' => [
         'missing' => PHP_EOL . "You need to pass a file type to create a view without specifying the app." . PHP_EOL . " It's expected something like this -> view:component:blade."

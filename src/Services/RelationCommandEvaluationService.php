@@ -32,6 +32,7 @@ class RelationCommandEvaluationService extends Evaluator
             HasUnknownRelation::class,
             HasUnknownPackage::class,
             HasUnknownModel::class,
+            HasConflictingType::class
         ];
     }
 
