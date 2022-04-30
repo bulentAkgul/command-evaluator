@@ -48,9 +48,9 @@ class MissingAppTest extends EvaluatorTestMethods
     }
 
     /** @test */
-    public function evaluator_will_return_confirmation_object_when_one_of_types_has_a_related_type_that_needs_app_but_app_is_missing_and_associated_option_is_true()
+    public function evaluator_will_return_confirmation_object_when_one_of_types_has_a_related_type_that_needs_app_but_app_is_missing_and_associated_option_is_not_disabled()
     {
-        config()->set('packagify.evaluator.warn_when_related_files_need_app_if_app_is_missing', true);
+        config()->set('packagify.evaluator.disable_warnings_unless_a_new_value_can_be_provided', false);
         config()->set('packagify.files.cast.pairs', ['controller']);
 
         $response = $this->evaluator::handle($this->setRequest(
@@ -79,9 +79,9 @@ class MissingAppTest extends EvaluatorTestMethods
     }
 
     /** @test */
-    public function evaluator_will_return_null_when_one_of_types_has_a_related_type_that_needs_app_but_app_is_missing_and_associated_option_is_false()
+    public function evaluator_will_return_null_when_one_of_types_has_a_related_type_that_needs_app_but_app_is_missing_and_associated_option_is_disabled()
     {
-        config()->set('packagify.evaluator.warn_when_related_files_need_app_if_app_is_missing', false);
+        config()->set('packagify.evaluator.disable_warnings_unless_a_new_value_can_be_provided', true);
         config()->set('packagify.files.cast.pairs', ['controller']);
 
         $this->assertNull($this->evaluator::handle($this->setRequest(

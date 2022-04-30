@@ -60,7 +60,7 @@ class HasMissingApp extends Evaluator
 
     private static function allowMissingApp()
     {
-        return !Settings::evaluator('warn_when_related_files_need_app_if_app_is_missing');
+        return Settings::evaluator('disable_warnings_unless_a_new_value_can_be_provided');
     }
 
     private static function typesNeedApp(array $types)

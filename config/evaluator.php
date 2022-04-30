@@ -1,5 +1,5 @@
 <?php
 
 return [
-    'warn_when_related_files_need_app_if_app_is_missing' => true,
+    'disable_warnings_unless_a_new_value_can_be_provided' => false,
 ];
