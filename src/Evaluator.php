@@ -14,19 +14,21 @@ class Evaluator
 
     public static function evaluatePart($evaluator, $request): ?array
     {
-        return $evaluator::hasIssue($request) ? self::getIssue($evaluator::args($request)) : null;
+        return $evaluator::hasIssue($request) ? self::getIssue($evaluator, $request) : null;
     }
 
-    public static function getIssue($args): array
+    public static function getIssue($evaluator, $request): array
     {
-        [$key, $type, $request, $issue, $confirm, $messanger] = $args;
+        [$key, $type, $request, $issue, $confirm, $messanger] = $evaluator::args($request);
 
         return [
             'key' => $key,
             'evaluated' => $type,
             'is_confirmable' => $confirm,
-            'problem' => $confirm ? $request[$key] : '',
-            'message' => (new $messanger)($key, $type, $request, $issue)
+            'problem' => $confirm ? Arry::get($request, $key) ?? '' : '',
+            'message' => $messanger
+                ? (new $messanger)($key, $type, $request, $issue)
+                : $evaluator::getMessage($request)
         ];
     }
 
