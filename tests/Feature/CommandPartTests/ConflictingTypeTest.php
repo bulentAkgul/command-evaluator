@@ -1,6 +1,6 @@
 <?php
 
-namespace Bakgul\Evaluator\Tests\Feature\CommandPartEvaluationTests;
+namespace Bakgul\Evaluator\Tests\Feature\CommandPartTests;
 
 use Bakgul\Evaluator\Services\PartEvaluationServices\HasConflictingType;
 use Bakgul\Kernel\Tests\Concerns\HasTestMethods;
