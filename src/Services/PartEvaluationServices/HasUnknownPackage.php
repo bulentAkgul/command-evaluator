@@ -16,11 +16,16 @@ class HasUnknownPackage extends Evaluator
 
     public static function handle(array $request, array $confirmations = []): ?array
     {
-        if (!Arry::get($request, 'package') || parent::isStandalone()) return null;
+        if (self::isKnown($request)) return null;
 
         self::$confirmations = $confirmations;
 
         return parent::evaluatePart(get_called_class(), $request);
+    }
+
+    private static function isKnown(array $request): bool
+    {
+        return !Arry::get($request, 'package') || parent::isStandalone() || parent::isWarningsDisabled();
     }
 
     public static function args($request): array

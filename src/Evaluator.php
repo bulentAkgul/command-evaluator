@@ -12,6 +12,11 @@ class Evaluator
         return Settings::standalone();
     }
 
+    public static function isWarningsDisabled()
+    {
+        return Settings::evaluator('disable_warnings');
+    }
+
     public static function evaluatePart($evaluator, $request): ?array
     {
         return $evaluator::hasIssue($request) ? self::getIssue($evaluator, $request) : null;

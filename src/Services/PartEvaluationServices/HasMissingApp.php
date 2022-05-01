@@ -20,7 +20,7 @@ class HasMissingApp extends Evaluator
 
     public static function handle(array $request, array $confirmations): ?array
     {
-        if ($request['app']) return null;
+        if ($request['app'] || parent::isWarningsDisabled()) return null;
 
         self::$confirmations = $confirmations;
 

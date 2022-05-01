@@ -5,6 +5,7 @@ namespace Bakgul\Evaluator\Services\PartEvaluationServices;
 use Bakgul\Evaluator\Evaluator;
 use Bakgul\Evaluator\Tasks\FindParentIssue;
 use Bakgul\Evaluator\Tasks\SetParentMessage;
+use Bakgul\Kernel\Helpers\Settings;
 
 class HasConflictingParent extends Evaluator
 {
@@ -15,7 +16,9 @@ class HasConflictingParent extends Evaluator
 
     public static function handle(array $request): ?array
     {
-        return parent::evaluatePart(get_called_class(), $request);
+        return parent::isWarningsDisabled()
+            ? null
+            : parent::evaluatePart(get_called_class(), $request);
     }
 
     public static function args($request)

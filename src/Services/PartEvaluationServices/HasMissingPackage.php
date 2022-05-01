@@ -14,7 +14,7 @@ class HasMissingPackage extends Evaluator
 
     public static function handle(array $request, array $confirmations): ?array
     {
-        if (parent::isStandalone()) return null;
+        if (parent::isStandalone() || parent::isWarningsDisabled()) return null;
 
         self::$confirmations = $confirmations;
 

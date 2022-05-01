@@ -4,7 +4,6 @@ namespace Bakgul\Evaluator\Services\PartEvaluationServices;
 
 use Bakgul\Kernel\Tasks\MutateApp;
 use Bakgul\Evaluator\Evaluator;
-use Bakgul\Evaluator\Tasks\HandlePartEvaluation;
 use Bakgul\Evaluator\Tasks\SetUnmodifiedMessage;
 
 class HasUnknownApp extends Evaluator
@@ -16,6 +15,8 @@ class HasUnknownApp extends Evaluator
 
     public static function handle(array $request, array $confirmations): ?array
     {
+        if (parent::isWarningsDisabled()) return null;
+
         self::$confirmations = $confirmations;
 
         return parent::evaluatePart(get_called_class(), $request);
