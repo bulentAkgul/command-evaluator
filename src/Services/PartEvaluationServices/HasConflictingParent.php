@@ -5,7 +5,6 @@ namespace Bakgul\Evaluator\Services\PartEvaluationServices;
 use Bakgul\Evaluator\Evaluator;
 use Bakgul\Evaluator\Tasks\FindParentIssue;
 use Bakgul\Evaluator\Tasks\SetParentMessage;
-use Bakgul\Kernel\Helpers\Settings;
 
 class HasConflictingParent extends Evaluator
 {
