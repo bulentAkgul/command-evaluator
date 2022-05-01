@@ -6,9 +6,9 @@ use Bakgul\Kernel\Helpers\Settings;
 use Bakgul\Evaluator\Evaluator;
 use Bakgul\Evaluator\Tasks\GetMessage;
 
-class HasConflictingType extends Evaluator
+class HasConflictingRelation extends Evaluator
 {
-    const KEY = 'type';
+    const KEY = 'relation';
     const TYPE = 'conflicting';
 
     private static $issue;

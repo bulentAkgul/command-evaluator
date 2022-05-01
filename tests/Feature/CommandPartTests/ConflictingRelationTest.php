@@ -2,12 +2,12 @@
 
 namespace Bakgul\Evaluator\Tests\Feature\CommandPartTests;
 
-use Bakgul\Evaluator\Services\PartEvaluationServices\HasConflictingType;
+use Bakgul\Evaluator\Services\PartEvaluationServices\HasConflictingRelation;
 use Bakgul\Kernel\Tests\Concerns\HasTestMethods;
 use Bakgul\Evaluator\Tests\EvaluatorTestMethods;
 use Bakgul\Kernel\Helpers\Settings;
 
-class ConflictingTypeTest extends EvaluatorTestMethods
+class ConflictingRelationTest extends EvaluatorTestMethods
 {
     use HasTestMethods;
 
@@ -15,7 +15,7 @@ class ConflictingTypeTest extends EvaluatorTestMethods
 
     public function __construct()
     {
-        $this->evaluator = HasConflictingType::class;
+        $this->evaluator = HasConflictingRelation::class;
 
         parent::__construct();
     }
