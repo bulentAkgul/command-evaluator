@@ -25,7 +25,6 @@ return [
     ],
     'type' => [
         'duplicated' => PHP_EOL . "Each file type in a single command must be unique." . PHP_EOL . " Please create them seperately.",
-        'conflicting' => PHP_EOL . "There is no such thing as 'Polymorphic Has {{ count }} Through' relationship." . PHP_EOL . " 'One to {{ count }} Polymorphic' will be generated. Proceed? (y / n)",
     ],
     'extra' => [
         'missing' => PHP_EOL . "You need to pass a file type to create a view without specifying the app." . PHP_EOL . " It's expected something like this -> view:component:blade."
@@ -40,6 +39,7 @@ return [
         ]
     ],
     'relation' => [
+        'conflicting' => PHP_EOL . "There is no such thing as 'Polymorphic Has {{ count }} Through' relationship." . PHP_EOL . " 'One to {{ count }} Polymorphic' will be generated. Proceed? (y / n)",
         'unknown' => "The command has been terminated because of an unknown relation: {{ relation }}"
     ],
     'model' => [
