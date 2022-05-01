@@ -24,7 +24,7 @@ class GetMessage
 
     private static function modifier(array $request): ?string
     {
-        return Arry::get(explode(':', $request['command']), 1);
+        return Arry::get(explode(Settings::seperators('modifier'), $request['command']), 1);
     }
 
     private static function set(string $message, array $request): string
