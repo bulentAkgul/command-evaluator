@@ -1,6 +1,6 @@
 {
   "name": "bakgul/command-evaluator",
-  "description": "Create Laravel files easily.",
+  "description": "A helper package to evaluate commands before touching file system.",
   "authors": [
     {
       "name": "Bulent Akgul",
