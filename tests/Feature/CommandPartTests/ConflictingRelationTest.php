@@ -51,7 +51,7 @@ class ConflictingRelationTest extends EvaluatorTestMethods
     /** @test */
     public function evaluator_will_return_confirmation_object_when_relation_is_not_mtm_if_polymorphic_and_mediator_are_truty()
     {
-        Settings::set('evaluator.disable_warnings_unless_a_new_value_can_be_provided', false);
+        Settings::set('evaluator.disable_warnings', false);
 
         foreach (['oto', 'otm'] as $relation) {
             $response = $this->evaluator::handle($this->setRequest([

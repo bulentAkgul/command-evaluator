@@ -2,9 +2,7 @@
 
 namespace Bakgul\Evaluator\Services\PartEvaluationServices;
 
-use Bakgul\Kernel\Helpers\Settings;
 use Bakgul\Evaluator\Evaluator;
-use Bakgul\Evaluator\Tasks\GetMessage;
 use Bakgul\Evaluator\Tasks\SetUnmodifiedMessage;
 
 class HasExcessMediator extends Evaluator

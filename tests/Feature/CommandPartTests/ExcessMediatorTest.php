@@ -53,7 +53,7 @@ class ExcessMediatorTest extends EvaluatorTestMethods
     /** @test */
     public function evaluator_will_return_confirmation_object_when_relation_is_mtm_if_polymorphic_and_mediator_are_truty()
     {
-        Settings::set('evaluator.disable_warnings_unless_a_new_value_can_be_provided', false);
+        Settings::set('evaluator.disable_warnings', false);
 
         $response = $this->evaluator::handle($this->setRequest([
             'relation' => 'mtm',
@@ -71,6 +71,6 @@ class ExcessMediatorTest extends EvaluatorTestMethods
         $this->assertEquals($response['evaluated'], 'excess');
         $this->assertEquals($response['is_confirmable'], true);
         $this->assertTrue(str_contains($response['message'], 'Many To Many Polymorphic'));
-        $this->assertTrue(str_contains($response['message'], "Therefore 'some_name' will be ignored"));
+        $this->assertTrue(str_contains($response['message'], "Therefore, 'some_name' will be ignored"));
     }
 }
