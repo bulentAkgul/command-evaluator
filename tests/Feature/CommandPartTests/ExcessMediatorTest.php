@@ -61,8 +61,6 @@ class ExcessMediatorTest extends EvaluatorTestMethods
             'polymorphic' => true
         ], 'relation'), []);
 
-        ray($response);
-
         $this->assertConfirmationObject($response, 'mtm');
     }
 
