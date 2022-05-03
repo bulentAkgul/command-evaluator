@@ -21,7 +21,7 @@ class ConflictingRelationTest extends EvaluatorTestMethods
     }
 
     /** @test */
-    public function evaluator_will_return_null_when_relation_is_mtm_evan_if_polymorphic_and_mediator_are_truety()
+    public function evaluator_will_return_null_when_relation_is_mtm_even_if_polymorphic_and_mediator_are_truety()
     {
         $this->assertNull($this->evaluator::handle($this->setRequest([
             'relation' => 'mtm'
