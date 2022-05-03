@@ -40,8 +40,9 @@ return [
     ],
     'relation' => [
         'conflicting' => PHP_EOL . "There is no such thing as 'Polymorphic Has {{ count }} Through' relationship." . PHP_EOL . " 'One to {{ count }} Polymorphic' will be generated. Proceed? (y / n)",
-        'excess' => PHP_EOL . "'Many To Many Polymorphic' relationship will create a pivot table in default name." . PHP_EOL . " Therefore '{{ mediator }}' will be ignored. Proceed? (y / n)",
-        'unknown' => "The command has been terminated because of an unknown relation: {{ relation }}"
+        'excess' => PHP_EOL . "'Many To Many Polymorphic' relationship will create a pivot table in default name." . PHP_EOL . " Therefore, '{{ mediator }}' will be ignored. Proceed? (y / n)",
+        'unknown' => "The command has been terminated because of an unknown relation: {{ relation }}",
+        'unusable' => PHP_EOL . "'Many To Many Polymorphic' relationship will use default column names." . PHP_EOL . " Therefore, the given column names will be ignored. Proceed? (y / n)",
     ],
     'model' => [
         'unknown' => "The command has been terminated because of an unknown model: {{ model }}"
