@@ -6,7 +6,7 @@ use Bakgul\Kernel\Helpers\Arry;
 use Bakgul\Kernel\Helpers\Isolation;
 use Bakgul\Evaluator\Evaluator;
 use Bakgul\Evaluator\Services\PartEvaluationServices\{
-    HasConflictingRelation, HasUnknownModel, HasUnknownPackage, HasUnknownRelation
+    HasConflictingRelation, HasExcessMediator, HasUnknownModel, HasUnknownPackage, HasUnknownRelation
 };
 
 class RelationCommandEvaluationService extends Evaluator
@@ -32,7 +32,8 @@ class RelationCommandEvaluationService extends Evaluator
             HasUnknownRelation::class,
             HasUnknownPackage::class,
             HasUnknownModel::class,
-            HasConflictingRelation::class
+            HasConflictingRelation::class,
+            HasExcessMediator::class
         ];
     }
 
