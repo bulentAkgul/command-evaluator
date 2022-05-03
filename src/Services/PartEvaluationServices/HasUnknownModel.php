@@ -88,6 +88,6 @@ class HasUnknownModel extends Evaluator
 
         if (!$model['package'] || Settings::standalone()) return false;
 
-        return empty(array_filter($filteredByName, fn ($x) => str_contains($x, Text::inject($model['package']))));
+        return empty(array_filter($filteredByName, fn ($x) => str_contains($x, Text::wrap($model['package']))));
     }
 }
