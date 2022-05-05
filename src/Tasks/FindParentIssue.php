@@ -17,6 +17,6 @@ class FindParentIssue
 
     private function isIssue(string $variation)
     {
-        return $variation && in_array($variation, array_keys(Settings::main('need_parent')));
+        return $variation && in_array($variation, array_keys(Settings::needs('parent')));
     }
 }

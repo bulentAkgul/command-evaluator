@@ -17,7 +17,7 @@ class SetParentMessage
     private function modifyRequest(array $request, array $issue): array
     {
         $request['variation'] = implode(', ', $this->stringify($issue));
-        $request['file'] = Settings::main("need_parent.{$issue[0][1]}");
+        $request['file'] = Settings::needs("parent.{$issue[0][1]}");
 
         return $request;
     }

@@ -5,6 +5,7 @@ namespace Bakgul\Evaluator\Tests\Feature\CommandPartTests;
 use Bakgul\Kernel\Tests\Concerns\HasTestMethods;
 use Bakgul\Evaluator\Services\PartEvaluationServices\HasMissingPackage;
 use Bakgul\Evaluator\Tests\EvaluatorTestMethods;
+use Bakgul\Kernel\Helpers\Settings;
 use Bakgul\Kernel\Tests\Services\TestDataService;
 use Bakgul\Kernel\Tests\Tasks\SetupTest;
 
@@ -24,7 +25,7 @@ class MissingPackageTest extends EvaluatorTestMethods
     /** @test */
     public function evaluator_will_return_null_regardles_of_the_package_if_the_project_is_standalone()
     {
-        config()->set('packagify.apps.admin.folder', 'xxx');
+        Settings::set('apps.admin.folder', 'xxx');
 
         foreach (['sl', 'sp', 'conflict'] as $isAlone) {
             $this->testPackage = (new SetupTest)(TestDataService::standalone($isAlone));

@@ -5,6 +5,7 @@ namespace Bakgul\Evaluator\Tests\Feature\CommandPartTests;
 use Bakgul\Kernel\Tests\Concerns\HasTestMethods;
 use Bakgul\Evaluator\Services\PartEvaluationServices\HasUnknownApp;
 use Bakgul\Evaluator\Tests\EvaluatorTestMethods;
+use Bakgul\Kernel\Helpers\Settings;
 use Illuminate\Support\Facades\Config;
 
 class UnknownAppTest extends EvaluatorTestMethods
@@ -44,5 +45,15 @@ class UnknownAppTest extends EvaluatorTestMethods
         $this->assertEquals($response['evaluated'], 'unknown');
         $this->assertEquals($response['is_confirmable'], true);
         $this->assertTrue(str_contains($response['message'], "There is no app named 'unknown.'"));
+    }
+
+    /** @test */
+    public function evaluator_will_return_null_when_warnings_are_disabled_even_if_command_has_unknown_app()
+    {
+        Settings::set('evaluator.disable_warnings', true);
+
+        $this->assertNull($this->evaluator::handle($this->setRequest(
+            ['app' => 'unknown']
+        ), []));
     }
 }

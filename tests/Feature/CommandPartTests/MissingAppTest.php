@@ -5,6 +5,7 @@ namespace Bakgul\Evaluator\Tests\Feature\CommandPartTests;
 use Bakgul\Kernel\Tests\Concerns\HasTestMethods;
 use Bakgul\Evaluator\Services\PartEvaluationServices\HasMissingApp;
 use Bakgul\Evaluator\Tests\EvaluatorTestMethods;
+use Bakgul\Kernel\Helpers\Settings;
 
 class MissingAppTest extends EvaluatorTestMethods
 {
@@ -50,8 +51,8 @@ class MissingAppTest extends EvaluatorTestMethods
     /** @test */
     public function evaluator_will_return_confirmation_object_when_one_of_types_has_a_related_type_that_needs_app_but_app_is_missing_and_associated_option_is_not_disabled()
     {
-        config()->set('packagify.evaluator.disable_warnings', false);
-        config()->set('packagify.files.cast.pairs', ['controller']);
+        Settings::set('evaluator.disable_warnings', false);
+        Settings::set('files.cast.pairs', ['controller']);
 
         $response = $this->evaluator::handle($this->setRequest(
             ['app' => null, 'type' => 'cast']
@@ -59,8 +60,8 @@ class MissingAppTest extends EvaluatorTestMethods
 
         $this->assertConfirmationObject($response);
 
-        config()->set('packagify.files.cast.pairs', []);
-        config()->set('packagify.files.cast.require', ['controller', 'category', '']);
+        Settings::set('files.cast.pairs', []);
+        Settings::set('files.cast.require', ['controller', 'category', '']);
 
         $response = $this->evaluator::handle($this->setRequest(
             ['app' => null, 'type' => 'cast']
@@ -69,7 +70,7 @@ class MissingAppTest extends EvaluatorTestMethods
         $this->assertConfirmationObject($response);
 
         config()->offsetUnset('packagify.files.cast.require');
-        config()->set('packagify.main.need_parent.cast', 'controller');
+        Settings::set('needs.parent.cast', 'controller');
 
         $response = $this->evaluator::handle($this->setRequest(
             ['app' => null, 'type' => 'cast']
@@ -81,8 +82,8 @@ class MissingAppTest extends EvaluatorTestMethods
     /** @test */
     public function evaluator_will_return_null_when_one_of_types_has_a_related_type_that_needs_app_but_app_is_missing_and_associated_option_is_disabled()
     {
-        config()->set('packagify.evaluator.disable_warnings', true);
-        config()->set('packagify.files.cast.pairs', ['controller']);
+        Settings::set('evaluator.disable_warnings', true);
+        Settings::set('files.cast.pairs', ['controller']);
 
         $this->assertNull($this->evaluator::handle($this->setRequest(
             ['app' => null, 'type' => 'cast']

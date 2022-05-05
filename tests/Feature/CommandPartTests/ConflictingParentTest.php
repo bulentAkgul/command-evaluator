@@ -5,6 +5,7 @@ namespace Bakgul\Evaluator\Tests\Feature\CommandPartTests;
 use Bakgul\Kernel\Tests\Concerns\HasTestMethods;
 use Bakgul\Evaluator\Services\PartEvaluationServices\HasConflictingParent;
 use Bakgul\Evaluator\Tests\EvaluatorTestMethods;
+use Bakgul\Kernel\Helpers\Settings;
 
 class ConflictingParentTest extends EvaluatorTestMethods
 {
@@ -44,7 +45,7 @@ class ConflictingParentTest extends EvaluatorTestMethods
     /** @test */
     public function evaluator_will_return_error_object_when_create_file_command_has_multiple_types_that_need_parents()
     {
-        config()->set('packagify.main.need_parent.pivot', 'factory');
+        Settings::set('needs.parent.pivot', 'factory');
         
         $response = $this->evaluator::handle($this->setRequest([
             'type' => 'controller:nested-api,model:pivot'
