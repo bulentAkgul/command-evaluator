@@ -143,6 +143,6 @@ class UnknownModelTest extends EvaluatorTestMethods
 
     private function package(string $name)
     {
-        return Path::glue([Settings::main('packages_root'), "core", $name, "src"]);
+        return Path::glue([Settings::folders('packages'), "core", $name, "src"]);
     }
 }
