@@ -34,7 +34,7 @@ return [
     ],
     'standalone' => [
         'unsuitable' => [
-            'laravel' => 'A standalone Laravel app can\'t have a package.',
+            'laravel' => "A standalone Laravel app can't have a package.",
             'package' => "A standalone package can have only one package," . PHP_EOL . " and it has already been created." . PHP_EOL . " That's way the command has been terminated.",
         ]
     ],
