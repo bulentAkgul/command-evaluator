@@ -12,7 +12,6 @@ class ResourceCommandEvaluationService extends Evaluator
     public static function handle(array $request, array $confirmations): ?array
     {
         $evaluation = null;
-        return $evaluation;
 
         foreach (self::evaluators() as $evaluator) {
             $evaluation = $evaluator::handle($request, $confirmations);
