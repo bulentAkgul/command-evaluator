@@ -1,6 +1,6 @@
 # Command Evaluator
 
-This is a helper package, and it can't be used independently. Its purpose is to evaluate the console commants of **[Packagified Laravel](https://github.com/bulentAkgul/packagified-laravel)** to make sure that they are valid. 
+This is a helper package, and it can't be used independently. Its purpose is to evaluate the console commands that are shiped with the packages that are part of **[Packagified Laravel](https://github.com/bulentAkgul/packagified-laravel)** to make sure that they are valid. 
 
 ### Packagified Laravel
 
