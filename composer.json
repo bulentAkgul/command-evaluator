@@ -1,6 +1,6 @@
 {
   "name": "bakgul/command-evaluator",
-  "description": "A helper package to evaluate commands before touching file system.",
+  "description": "This is a helper package, and it can't be used independently. Its purpose is to evaluate the console commands that are shipped with the other packages, which are part of Packagified Laravel, to ensure that they are valid.",
   "authors": [
     {
       "name": "Bulent Akgul",
