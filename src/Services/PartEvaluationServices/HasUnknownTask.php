@@ -54,7 +54,7 @@ class HasUnknownTask extends Evaluator
     {
         return self::produce(
             self::getTypes($request['type']),
-            fn ($x) => Settings::files("{$x}.tasks")
+            fn ($x) => self::setTasks($x)
         );
     }
 
@@ -64,6 +64,17 @@ class HasUnknownTask extends Evaluator
             fn ($x) => $x['type'],    
             Arr::flatten(CollectTypes::_($type), 1)
         ));
+    }
+
+    private static function setTasks(string $type)
+    {
+        $tasks = Settings::files("{$type}.tasks");
+
+        if ($tasks) return $tasks;
+
+        return Settings::files("{$type}.family") == 'resources'
+            ? Settings::main('tasks_have_views')
+            : [];
     }
 
     private static function produce(array $array, callable $callback)
