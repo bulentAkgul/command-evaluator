@@ -24,7 +24,7 @@ trait ShouldBeEvaluated
             $this->demand();
 
             if ($this->isTerminated()) return;
-            
+
             $this->try();
         }
     }
@@ -81,7 +81,7 @@ trait ShouldBeEvaluated
     public function setConfirmation(string $reply)
     {
         if (trim(strtolower($reply)) == 'n') return $this->terminate;
-        
+
         $this->confirmations[] = "{$this->evaluation['key']}.{$this->evaluation['evaluated']}";
 
         return $this->request[$this->evaluation['key']];
@@ -89,7 +89,7 @@ trait ShouldBeEvaluated
 
     public function setNewValue(string $reply)
     {
-        return is_string($this->evaluation['problem'])
+        return $this->evaluation['problem'] && is_string($this->evaluation['problem'])
             ? str_replace($this->evaluation['problem'], $reply, $this->request[$this->evaluation['key']])
             : $reply;
     }
@@ -97,11 +97,11 @@ trait ShouldBeEvaluated
     public function terminate()
     {
         $this->error(
-            "Command has been terminated due to the {$this->evaluation['key']} issue." . $this->appendMessage()
+            "Command has been terminated due to the {$this->evaluation['key']} issue. {$this->getMessage()}"
         );
     }
 
-    public function appendMessage()
+    public function getMessage()
     {
         return $this->evaluation['is_confirmable'] ? '' : " {$this->evaluation['message']}";
     }
