@@ -3,20 +3,20 @@
 return [
     'default' => [
         'unknown' => "Unknown or unmatched {{ identifier }}: {{ issues }}",
-        'reasonless' => "The command has been terminated because of an unknown issue about {{ key }}."
+        'reasonless' => "Unknown issue about {{ key }}."
     ],
     'app' => [
         'missing' => "The command has no app name." . PHP_EOL . "The files will be created in the shared folder." . PHP_EOL . " Proceed? (y / n / app name)",
         'unknown' => "There is no app named '{{ app }}.'" . PHP_EOL . " The files will be created in the shared folder of {{ package }}." . PHP_EOL . " Proceed? (y / n / app name)"
     ],
     'package' => [
-        'duplicated' => "The command has been terminated because '{{ package }}' is already exist.",
+        'duplicated' => "'{{ package }}' is already exist.",
         'missing' => [
             'file' => "The command has no package name." . PHP_EOL . " The files will be created in '/app'" . PHP_EOL . " Proceed? (y / n / package name)",
         ],
         'unknown' => [
             'file' => "A package named '{{ package }}' couldn't be found." . PHP_EOL . " The files will be created in the related namespace of the main repository." . PHP_EOL . " Proceed? (y / n / package name)",
-            'relation' => "The command has been terminated because one of the given packages couldn't be found."
+            'relation' => "The given packages couldn't be found."
         ],
     ],
     'parent' => [
@@ -41,10 +41,10 @@ return [
     'relation' => [
         'conflicting' => PHP_EOL . "There is no such thing as 'Polymorphic Has {{ count }} Through' relationship." . PHP_EOL . " 'One to {{ count }} Polymorphic' will be generated. Proceed? (y / n)",
         'excess' => PHP_EOL . "'Many To Many Polymorphic' relationship will create a pivot table in default name." . PHP_EOL . " Therefore, '{{ mediator }}' will be ignored. Proceed? (y / n)",
-        'unknown' => "The command has been terminated because of an unknown relation: {{ relation }}",
+        'unknown' => "Unknown relation: {{ relation }}",
         'unusable' => PHP_EOL . "'Many To Many Polymorphic' relationship will use default column names." . PHP_EOL . " Therefore, the given column names will be ignored. Proceed? (y / n)",
     ],
     'model' => [
-        'unknown' => "The command has been terminated because of an unknown model: {{ model }}"
+        'unknown' => "Unknown model: {{ model }}"
     ],
 ];
