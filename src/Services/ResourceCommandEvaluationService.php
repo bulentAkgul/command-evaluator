@@ -4,7 +4,7 @@ namespace Bakgul\Evaluator\Services;
 
 use Bakgul\Evaluator\Evaluator;
 use Bakgul\Evaluator\Services\PartEvaluationServices\{
-    HasConflictingParent, HasDuplicatedType, HasMissingApp, HasMissingPackage, HasMissingParent, HasUnknownType, HasUnknownApp, HasUnknownPackage, HasUnknownTask, HasUnsuitableVariation
+    HasMissingApp, HasMissingPackage, HasMissingParent, HasUnknownType, HasUnknownApp, HasUnknownPackage, HasUnknownTask, HasUnsuitableVariation
 };
 
 class ResourceCommandEvaluationService extends Evaluator
@@ -29,11 +29,9 @@ class ResourceCommandEvaluationService extends Evaluator
             HasUnknownPackage::class,
             HasMissingApp::class,
             HasUnknownApp::class,
-            HasDuplicatedType::class,
             HasUnknownType::class,
             HasUnsuitableVariation::class,
             HasUnknownTask::class,
-            HasConflictingParent::class,
             HasMissingParent::class,
         ];
     }
